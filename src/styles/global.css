@@ -1,0 +1,103 @@
+/* ============================================================
+   《市长，项目又烂尾了》全局样式与 CSS 变量
+   双轨视觉：像素游戏风格（城市世界） + 公文风格（市政文件）
+   ============================================================ */
+
+/* 像素字体：Press Start 2P（仅用于城市 HUD / 像素弹窗标题 / 游戏按钮） */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+  /* ---------- 轨道一：城市世界（像素游戏） ---------- */
+  --pixel-sky: #87ceeb;        /* 天空蓝 */
+  --pixel-ground: #8b6914;     /* 地面棕 */
+  --pixel-road: #696969;       /* 路面灰 */
+  --pixel-ui-bg: #1a1a2e;      /* 像素 UI 背景（深海军蓝） */
+  --pixel-ui-border: #e8c14c;  /* 像素 UI 边框（金黄） */
+  --pixel-ui-text: #f0e6c8;    /* 像素 UI 文字（米黄） */
+
+  /* 建筑状态色 */
+  --pixel-warning: #fdcb6e;    /* 施工预警黄 */
+  --pixel-halted: #e17055;     /* 停工橙 */
+  --pixel-abandoned: #636e72;  /* 烂尾灰 */
+  --pixel-completed: #00b894;  /* 竣工绿 */
+  --pixel-demolish: #d63031;   /* 爆破红 */
+  --pixel-construction: #f0b429;/* 在建暖黄 */
+
+  /* 像素按钮 */
+  --pixel-btn-bg: #e17055;
+  --pixel-btn-text: #1a1a2e;
+
+  /* ---------- 轨道二：市政文件（公文风格） ---------- */
+  --doc-bg: #fafaf8;           /* 公文背景（米白） */
+  --doc-text: #1a1a1a;         /* 公文正文（黑） */
+  --doc-title: #c0392b;        /* 公文标题 / 印章（红） */
+  --doc-meta: #999999;         /* 页眉页脚（浅灰） */
+  --doc-border: #d9d4c8;       /* 公文分隔线 */
+
+  /* ---------- 字体栈 ---------- */
+  --font-pixel: 'Press Start 2P', 'Courier New', monospace;
+  --font-doc: 'Courier New', 'SimSun', 'Songti SC', serif;
+  --font-doc-sans: -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+
+  /* ---------- 布局常量 ---------- */
+  --canvas-width: 1280px;
+  --canvas-height: 480px;
+  --topbar-height: 56px;
+  --z-canvas: 1;
+  --z-hud: 10;
+  --z-panel: 100;
+  --z-modal: 1000;
+  --z-notification: 2000;
+}
+
+/* ---------- 全局重置 ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: var(--pixel-ui-bg);
+  color: var(--pixel-ui-text);
+  font-family: var(--font-doc-sans);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Canvas 像素渲染（防缩放模糊） */
+canvas {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* 像素字体工具类（城市世界专用） */
+.pixel-font {
+  font-family: var(--font-pixel);
+  letter-spacing: 1px;
+}
+
+/* 公文字体工具类（市政文件专用） */
+.doc-font {
+  font-family: var(--font-doc);
+}
+
+/* 滚动条（像素风格） */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--pixel-ui-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--pixel-ui-border);
+  border: 2px solid var(--pixel-ui-bg);
+}

@@ -1,0 +1,203 @@
+/* ============================================================
+   首次建城 Onboarding 样式（像素游戏轨道，非登录/SaaS 注册页）
+   深海军蓝背景 + 暖黄重点 + 像素标题 + 方形边框
+   ============================================================ */
+
+.screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--pixel-ui-bg);
+  overflow: hidden;
+}
+
+/* 背景装饰层（城市远景剪影，低透明度，不抢前景） */
+.bgCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* 居中面板 */
+.panel {
+  position: relative;
+  z-index: 1;
+  width: min(620px, 92vw);
+  background: rgba(26, 26, 46, 0.95);
+  border: 4px solid var(--pixel-ui-border);
+  box-shadow: 0 0 0 2px #0a0c1e, 8px 8px 0 0 rgba(0, 0, 0, 0.5);
+  padding: 28px 28px 24px;
+  color: var(--pixel-ui-text);
+  box-sizing: border-box;
+}
+
+/* 步骤指示 */
+.steps {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+.stepDot {
+  width: 28px;
+  height: 6px;
+  background: rgba(232, 193, 76, 0.25);
+}
+.stepDot.active {
+  background: var(--pixel-ui-border);
+}
+
+.title {
+  font-family: var(--font-pixel);
+  font-size: 17px;
+  color: var(--pixel-ui-border);
+  letter-spacing: 1px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.body {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--pixel-ui-text);
+  margin-bottom: 24px;
+}
+.bodyMuted {
+  color: #9aa0b5;
+}
+
+/* 输入框 */
+.field {
+  margin-bottom: 10px;
+}
+.label {
+  display: block;
+  font-size: 12px;
+  color: #c9c3a8;
+  margin-bottom: 8px;
+}
+.input {
+  width: 100%;
+  box-sizing: border-box;
+  background: #10121f;
+  border: 2px solid var(--pixel-ui-border);
+  color: var(--pixel-ui-text);
+  font-size: 15px;
+  padding: 10px 12px;
+  font-family: inherit;
+}
+.input:focus {
+  outline: 2px solid var(--pixel-btn-primary, #e17055);
+  outline-offset: 1px;
+}
+.hint {
+  font-size: 12px;
+  color: #6f7590;
+  margin-top: 6px;
+  min-height: 16px;
+}
+.hintError {
+  color: var(--pixel-halted);
+}
+
+/* 方针候选卡片 */
+.policyList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.policyCard {
+  text-align: left;
+  background: #10121f;
+  border: 2px solid rgba(232, 193, 76, 0.4);
+  padding: 14px 14px;
+  cursor: pointer;
+  color: var(--pixel-ui-text);
+  box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.4);
+}
+.policyCard:hover {
+  border-color: var(--pixel-ui-border);
+  background: #161a2e;
+}
+.policyCard.selected {
+  border-color: var(--pixel-btn-primary, #e17055);
+  background: #1d1a2a;
+  box-shadow: 0 0 0 2px var(--pixel-btn-primary, #e17055);
+}
+.policyTitle {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  color: var(--pixel-ui-border);
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.policyCard.selected .policyTitle {
+  color: var(--pixel-btn-primary, #e17055);
+}
+.policyDesc {
+  font-size: 13px;
+  color: #c9c3a8;
+  line-height: 1.6;
+}
+
+/* 底部操作区 */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.footerRight {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+}
+
+/* 像素按钮（复用 ui 轨道风格，局部定义避免跨模块耦合） */
+.btn {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  letter-spacing: 1px;
+  padding: 11px 18px;
+  cursor: pointer;
+  border: 2px solid var(--pixel-ui-border);
+  background: var(--pixel-ui-bg);
+  color: var(--pixel-ui-text);
+  box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.5);
+  line-height: 1.4;
+}
+.btn:hover {
+  background: var(--pixel-ui-border);
+  color: var(--pixel-ui-bg);
+}
+.btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+}
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.btn:disabled:hover {
+  background: var(--pixel-ui-bg);
+  color: var(--pixel-ui-text);
+}
+.btnPrimary {
+  border-color: var(--pixel-btn-primary, #e17055);
+  background: var(--pixel-btn-primary, #e17055);
+  color: #1a1a2e;
+}
+.btnPrimary:hover {
+  background: var(--pixel-ui-bg);
+  color: var(--pixel-btn-primary, #e17055);
+}
+.btnPrimary:disabled:hover {
+  background: var(--pixel-btn-primary, #e17055);
+  color: #1a1a2e;
+}

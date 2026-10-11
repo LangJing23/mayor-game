@@ -1,0 +1,382 @@
+/* ============================================================
+   项目建设档案（施工档案风）——比立项批复轻，像在建项目的工作档案
+   像素外框容器 + 米白档案纸内容区
+   ============================================================ */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 12, 30, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal);
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+/* 像素游戏外框 */
+.frame {
+  width: min(620px, 94vw);
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--pixel-ui-bg);
+  border: 4px solid var(--pixel-ui-border);
+  box-shadow: 0 0 0 2px #0a0c1e, 8px 8px 0 0 rgba(0, 0, 0, 0.5);
+}
+
+/* 像素标题栏（档案抬头） */
+.titleBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--pixel-ui-border);
+  color: #1a1a2e;
+  padding: 8px 12px;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.titleText {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+.closeBtn {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  background: transparent;
+  color: #1a1a2e;
+  border: 2px solid #1a1a2e;
+  padding: 2px 5px;
+  cursor: pointer;
+  line-height: 1;
+}
+.closeBtn:hover {
+  background: #1a1a2e;
+  color: var(--pixel-ui-border);
+}
+.closeBtn:active {
+  transform: translateY(2px);
+}
+
+/* 档案纸内容区 */
+.paper {
+  background: var(--doc-bg, #fafaf8);
+  color: var(--doc-text, #1a1a1a);
+  overflow-y: auto;
+  padding: 22px 26px;
+  font-family: var(--font-doc-sans);
+}
+
+/* 项目名 + 状态徽标 */
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 2px solid var(--doc-border, #d9d4c8);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+.projName {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--doc-text, #1a1a1a);
+  font-family: 'SimHei', 'Microsoft YaHei', var(--font-doc-sans);
+}
+.projId {
+  font-size: 12px;
+  color: var(--doc-meta, #999);
+  margin-top: 4px;
+}
+
+/* 状态徽标：颜色与城市建筑体系一致 */
+.badge {
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border: 2px solid;
+  white-space: nowrap;
+}
+.badgeConstruction {
+  color: #8a6400;
+  border-color: var(--pixel-construction);
+  background: #fff6e0;
+}
+.badgeWarning {
+  color: #8a6400;
+  border-color: var(--pixel-warning);
+  background: #fff6e0;
+}
+.badgeHalted {
+  color: #8b3a24;
+  border-color: var(--pixel-halted);
+  background: #fdece6;
+}
+.badgeAbandoned {
+  color: #4a4f52;
+  border-color: var(--pixel-abandoned);
+  background: #eceef0;
+}
+.badgeCompleted {
+  color: #0a5c48;
+  border-color: var(--pixel-completed);
+  background: #e4faf3;
+}
+
+/* 元信息网格 */
+.metaGrid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 7px 14px;
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+.metaLabel {
+  color: #666;
+  white-space: nowrap;
+}
+.metaValue {
+  color: var(--doc-text, #1a1a1a);
+}
+
+/* 小节标题 */
+.sectionTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--doc-title, #c0392b);
+  margin: 18px 0 8px;
+  padding-left: 8px;
+  border-left: 3px solid var(--doc-title, #c0392b);
+  font-family: 'SimHei', 'Microsoft YaHei', var(--font-doc-sans);
+}
+
+/* 建设方案 section */
+.planSection {
+  margin-bottom: 12px;
+}
+.planSectionTitle {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--doc-text, #1a1a1a);
+}
+.planSectionBody {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #333;
+  text-indent: 2em;
+}
+
+/* 施工记录 */
+.recordItem {
+  padding: 8px 0;
+  border-bottom: 1px dashed #ddd7c8;
+}
+.recordItem:last-child {
+  border-bottom: none;
+}
+.recordDate {
+  font-size: 13px;
+  font-weight: 700;
+  color: #555;
+  margin-bottom: 3px;
+}
+.recordNote {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #333;
+}
+.recordEmpty {
+  font-size: 13px;
+  color: #999;
+  padding: 6px 0;
+}
+.recordDemoTag {
+  font-size: 11px;
+  color: #a6791a;
+  margin-left: 6px;
+}
+
+/* 烂尾/只读提示条 */
+.statusNotice {
+  background: #fdece6;
+  border: 1px solid var(--pixel-halted);
+  color: #8b3a24;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 14px 0;
+}
+
+/* 施工备案区 */
+.recordForm {
+  margin-top: 10px;
+  background: #f3efe6;
+  border: 1px solid var(--doc-border, #d9d4c8);
+  padding: 12px 14px;
+}
+.recordFormLabel {
+  font-size: 13px;
+  color: #555;
+  display: block;
+  margin-bottom: 6px;
+}
+.recordInput {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-doc-sans);
+  font-size: 14px;
+  padding: 8px 10px;
+  border: 1px solid #c7c2b4;
+  border-radius: 2px;
+  background: #fff;
+  resize: vertical;
+}
+.recordInput:focus {
+  outline: 2px solid rgba(192, 57, 43, 0.4);
+  border-color: var(--doc-title, #c0392b);
+}
+
+/* 底部操作区（像素外框内，深色底 + 像素按钮） */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--pixel-ui-bg);
+  border-top: 2px solid rgba(232, 193, 76, 0.3);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.btn {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  letter-spacing: 1px;
+  padding: 10px 14px;
+  cursor: pointer;
+  border: 2px solid var(--pixel-ui-border);
+  background: var(--pixel-ui-bg);
+  color: var(--pixel-ui-text);
+  box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.5);
+  line-height: 1.4;
+}
+.btn:hover {
+  background: var(--pixel-ui-border);
+  color: var(--pixel-ui-bg);
+}
+.btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+}
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.btn:disabled:hover {
+  background: var(--pixel-ui-bg);
+  color: var(--pixel-ui-text);
+}
+.btnPrimary {
+  border-color: var(--pixel-btn-primary, #e17055);
+  background: var(--pixel-btn-primary, #e17055);
+  color: #1a1a2e;
+}
+.btnPrimary:hover {
+  background: var(--pixel-ui-bg);
+  color: var(--pixel-btn-primary, #e17055);
+}
+.btnPrimary:disabled:hover {
+  background: var(--pixel-btn-primary, #e17055);
+  color: #1a1a2e;
+}
+
+/* ============================================================
+   烂尾工程治理区域（TASK-18）—— 仅 abandoned && 已审计时展示
+   ============================================================ */
+.governBox {
+  margin-top: 16px;
+  border: 1px solid #e2dccb;
+  border-top: 3px solid var(--doc-title, #c0392b);
+  background: #fafaf8;
+  padding: 12px 14px;
+}
+.governTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--doc-title, #c0392b);
+  margin-bottom: 8px;
+  font-family: 'SimHei', 'Microsoft YaHei', var(--font-doc-sans);
+}
+.governRow {
+  font-size: 13px;
+  line-height: 1.9;
+  color: #333;
+}
+.governRow b {
+  color: #1a1a1a;
+}
+/* 审计建议：突出推荐项，但不强制 */
+.governAdvice {
+  display: inline-block;
+  margin-top: 2px;
+  font-size: 13px;
+  color: #8b3a24;
+  background: #fdece6;
+  border: 1px solid #e3b4ad;
+  border-radius: 2px;
+  padding: 1px 8px;
+}
+.governHint {
+  font-size: 12px;
+  color: #999;
+  margin-top: 8px;
+  line-height: 1.7;
+}
+.governActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+/* 爆破按钮：最强视觉警示 */
+.btnDanger {
+  border-color: var(--pixel-demolish, #d63031);
+  background: var(--pixel-demolish, #d63031);
+  color: #fff;
+}
+.btnDanger:hover {
+  background: #b02525;
+}
+
+/* 规划降级审定（公文输入 / 审定子面板，复用像素 Modal 承载） */
+.downgradeField {
+  margin-bottom: 10px;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.downgradeField .dfLabel {
+  color: #9aa0b5;
+  margin-right: 6px;
+}
+.downgradeField .dfValue {
+  color: var(--pixel-ui-text);
+  font-weight: 600;
+}
+.downgradeInput {
+  width: 100%;
+  box-sizing: border-box;
+  background: #10121f;
+  border: 2px solid var(--pixel-ui-border);
+  color: var(--pixel-ui-text);
+  font-size: 14px;
+  line-height: 1.7;
+  padding: 10px 12px;
+  font-family: inherit;
+  resize: vertical;
+}

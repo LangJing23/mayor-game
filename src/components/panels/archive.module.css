@@ -1,0 +1,169 @@
+/* ============================================================
+   城市建设档案馆（TASK-21）—— 公文轨补充样式
+   外壳复用 document.module.css（docOverlay/docPaper/docInner/docOrg/docRule/docTitle/docActions/docBtn）
+   ============================================================ */
+
+.archivePaper {
+  width: min(680px, 94vw);
+}
+
+/* Tab 切换 */
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin: 0 0 16px;
+  border-bottom: 1px solid var(--doc-border, #d9d4c8);
+}
+.tab {
+  font-family: var(--font-doc-sans);
+  font-size: 14px;
+  padding: 8px 14px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: #666;
+}
+.tab:hover {
+  color: var(--doc-title, #c0392b);
+}
+.tabActive {
+  color: var(--doc-title, #c0392b);
+  font-weight: 700;
+  border-bottom-color: var(--doc-title, #c0392b);
+}
+
+/* 列表 */
+.list {
+  min-height: 180px;
+  max-height: 56vh;
+  overflow-y: auto;
+}
+.row {
+  display: block;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid var(--doc-border, #d9d4c8);
+  border-radius: 2px;
+  padding: 12px 14px;
+  margin: 0 0 10px;
+  font-family: var(--font-doc-sans);
+}
+.row:hover {
+  background: #faf7f0;
+  border-color: var(--doc-title, #c0392b);
+}
+.rowMain {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.rowName {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+.rowMeta {
+  font-size: 12px;
+  color: #777;
+  line-height: 1.6;
+}
+
+/* 状态徽章 */
+.badge {
+  flex-shrink: 0;
+  font-size: 12px;
+  padding: 1px 8px;
+  border-radius: 2px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.badge_construction { background: #fbf0d6; color: #8a6d1a; }
+.badge_warning { background: #fdf4e0; color: #9a7b1a; }
+.badge_halted { background: #fdece6; color: #8b3a24; }
+.badge_abandoned { background: #e8eaed; color: #4b5157; }
+.badge_completed { background: #e4faf3; color: #0a5c48; }
+.badge_demolished { background: #e8eaed; color: #4b5157; }
+
+/* 空状态 */
+.empty {
+  text-align: center;
+  color: #8a8f94;
+  padding: 48px 20px;
+  line-height: 2;
+  font-size: 14px;
+}
+.emptySub {
+  font-size: 12px;
+  color: #a9a9a9;
+}
+
+/* 只读详情 */
+.backBtn {
+  font-family: var(--font-doc-sans);
+  font-size: 13px;
+  background: transparent;
+  border: none;
+  color: var(--doc-title, #c0392b);
+  cursor: pointer;
+  padding: 0 0 10px;
+}
+.detailName {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+  font-family: 'SimHei', 'Microsoft YaHei', var(--font-doc-sans);
+}
+.detailMetaGrid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 14px;
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+.detailLabel { color: #666; white-space: nowrap; }
+.detailValue { color: #1a1a1a; font-weight: 600; }
+.detailSectionTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--doc-title, #c0392b);
+  margin: 16px 0 8px;
+  font-family: 'SimHei', 'Microsoft YaHei', var(--font-doc-sans);
+}
+.detailSection {
+  border-left: 3px solid var(--doc-border, #d9d4c8);
+  padding: 4px 0 4px 12px;
+  margin-bottom: 10px;
+}
+.detailSectionHead {
+  font-size: 14px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 4px;
+}
+.detailSectionBody {
+  font-size: 13px;
+  line-height: 1.9;
+  color: #444;
+}
+.detailNote {
+  font-size: 13px;
+  color: #777;
+  line-height: 1.8;
+  margin: 8px 0;
+}
+
+/* 年报分段标题 */
+.reportHead {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--doc-title, #c0392b);
+  margin: 18px 0 8px;
+  font-family: 'SimHei', 'Microsoft YaHei', var(--font-doc-sans);
+}

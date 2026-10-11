@@ -1,0 +1,256 @@
+/* ============================================================
+   12345 市民热线面板样式 —— 政务热线 / 市民留言板风
+   浅色纸面 + 深色正文 + 小面积红/深蓝标题；外层保留游戏窗口框架
+   ============================================================ */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 12, 30, 0.6);
+  display: flex;
+  justify-content: flex-end; /* 从右侧抽屉滑出 */
+  z-index: var(--z-modal);
+}
+
+/* 右侧抽屉 */
+.drawer {
+  width: min(440px, 92vw);
+  height: 100%;
+  background: var(--pixel-ui-bg);
+  border-left: 4px solid var(--pixel-ui-border);
+  box-shadow: -8px 0 0 0 rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  animation: hotlineSlideIn 200ms steps(4, end);
+}
+@keyframes hotlineSlideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* 游戏窗口标题栏（像素框架） */
+.titleBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--pixel-ui-border);
+  color: #1a1a2e;
+  padding: 10px 12px;
+  flex-shrink: 0;
+}
+.titleWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.titleMain {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+.titleSub {
+  font-size: 11px;
+  color: #3a3a2a;
+}
+.closeBtn {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  background: transparent;
+  color: #1a1a2e;
+  border: 2px solid #1a1a2e;
+  padding: 3px 6px;
+  cursor: pointer;
+  line-height: 1;
+  align-self: flex-start;
+}
+.closeBtn:hover {
+  background: #1a1a2e;
+  color: var(--pixel-ui-border);
+}
+.closeBtn:active {
+  transform: translateY(2px);
+}
+
+/* 留言列表区（浅色纸面） */
+.list {
+  flex: 1;
+  overflow-y: auto;
+  background: #f3efe6;
+  padding: 12px;
+}
+
+/* 单条来信卡片 */
+.item {
+  background: #fafaf8;
+  border: 1px solid #ddd7c8;
+  border-left: 4px solid #99a; /* 类型色，JS 覆盖 */
+  padding: 12px 14px;
+  margin-bottom: 10px;
+}
+
+/* 类型标签 */
+.typeTag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 2px;
+  margin-bottom: 8px;
+}
+.tagComplaint {
+  color: #8b3a24;
+  background: #fdece6;
+}
+.tagQuestion {
+  color: #1f4e79;
+  background: #e6eef7;
+}
+.tagSuggestion {
+  color: #6b5320;
+  background: #fbf4e6;
+}
+.tagPraise {
+  color: #0a5c48;
+  background: #e4faf3;
+}
+
+/* 来信人 */
+.sender {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.avatar {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border: 1px solid #c7c2b4;
+  image-rendering: pixelated;
+}
+.senderInfo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+.senderName {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+.senderTitle {
+  font-size: 11px;
+  color: #888;
+}
+
+/* 正文 */
+.content {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+/* 关联工程 + 时间 */
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.relatedProject {
+  font-size: 12px;
+  color: #666;
+}
+.relatedLink {
+  font-size: 12px;
+  color: var(--doc-title, #c0392b);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+.relatedLink:hover {
+  color: #a93226;
+}
+.time {
+  font-size: 11px;
+  color: #999;
+}
+.docNo {
+  font-size: 10px;
+  color: #b5b0a0;
+  margin-top: 6px;
+}
+
+/* 空状态 */
+.empty {
+  text-align: center;
+  color: #8a8f94;
+  padding: 48px 20px;
+  line-height: 2;
+  font-size: 14px;
+}
+.emptySub {
+  font-size: 12px;
+  color: #6f7590;
+}
+
+/* 列表底部提示（超过展示上限） */
+.listFoot {
+  text-align: center;
+  color: #999;
+  font-size: 12px;
+  padding: 8px 0 4px;
+}
+
+/* ============================================================
+   主界面入口按钮（轻量二级入口 + badge）
+   ============================================================ */
+.entryBtn {
+  position: relative;
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  letter-spacing: 1px;
+  padding: 8px 12px;
+  cursor: pointer;
+  border: 2px solid rgba(232, 193, 76, 0.6);
+  background: rgba(26, 26, 46, 0.85);
+  color: var(--pixel-ui-text);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.entryBtn:hover {
+  border-color: var(--pixel-ui-border);
+  background: var(--pixel-ui-border);
+  color: var(--pixel-ui-bg);
+}
+.entryBtn:active {
+  transform: translateY(2px);
+}
+
+/* 未读 badge */
+.badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  box-sizing: border-box;
+  background: var(--pixel-demolish);
+  color: #fff;
+  border: 2px solid var(--pixel-ui-bg);
+  border-radius: 9px;
+  font-family: var(--font-doc-sans);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 14px;
+  text-align: center;
+}

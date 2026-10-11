@@ -1,0 +1,254 @@
+/* ============================================================
+   通用像素 UI 组件样式（城市世界/HUD 轨道，非公文轨道）
+   深海军蓝基底 + 暖黄金边 + 方形边框，无现代大圆角，无 UI 库默认样式
+   ============================================================ */
+
+/* ---------- 遮罩 ---------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 12, 30, 0.72); /* 深色半透明，非纯黑 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal);
+}
+
+/* ---------- 弹窗体 ---------- */
+.modal {
+  background: var(--pixel-ui-bg);
+  /* 方形像素边框：外金边 + 内深描边，无 border-radius */
+  border: 4px solid var(--pixel-ui-border);
+  box-shadow: 0 0 0 2px #0a0c1e, 6px 6px 0 0 rgba(0, 0, 0, 0.45);
+  min-width: 320px;
+  max-width: 560px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  color: var(--pixel-ui-text);
+  image-rendering: pixelated;
+}
+
+/* ---------- 标题栏 ---------- */
+.titleBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--pixel-ui-border);
+  color: #1a1a2e;
+  padding: 8px 10px;
+  gap: 10px;
+}
+
+.titleText {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  letter-spacing: 1px;
+  line-height: 1.4;
+}
+
+/* 标题左侧红色方块装饰 */
+.titleIcon {
+  width: 10px;
+  height: 10px;
+  background: var(--pixel-demolish);
+  flex-shrink: 0;
+}
+
+.titleLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 关闭按钮 [X] */
+.closeBtn {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  background: transparent;
+  color: #1a1a2e;
+  border: 2px solid #1a1a2e;
+  padding: 2px 5px;
+  cursor: pointer;
+  line-height: 1;
+}
+.closeBtn:hover {
+  background: #1a1a2e;
+  color: var(--pixel-ui-border);
+}
+.closeBtn:active {
+  transform: translateY(2px);
+}
+
+/* ---------- 内容区 ---------- */
+.content {
+  padding: 16px 14px;
+  font-size: 14px;
+  line-height: 1.7;
+  overflow-y: auto;
+}
+
+/* ---------- 底部 action 区 ---------- */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 10px 14px;
+  border-top: 2px solid rgba(232, 193, 76, 0.35);
+}
+
+/* ============================================================
+   像素按钮：方形、hover 颜色反转、active 下沉 2px
+   ============================================================ */
+.btn {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  letter-spacing: 1px;
+  padding: 9px 14px;
+  cursor: pointer;
+  border: 2px solid var(--pixel-ui-border);
+  background: var(--pixel-ui-bg);
+  color: var(--pixel-ui-text);
+  box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.5);
+  transition: none; /* 像素风不用过渡动画 */
+  line-height: 1.4;
+}
+.btn:hover {
+  /* hover 颜色反转 */
+  background: var(--pixel-ui-border);
+  color: var(--pixel-ui-bg);
+}
+.btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+}
+.btn:focus-visible {
+  outline: 2px dashed var(--pixel-ui-text);
+  outline-offset: 2px;
+}
+
+/* 主按钮（橙红强调） */
+.btnPrimary {
+  border-color: var(--pixel-btn-primary, #e17055);
+  background: var(--pixel-btn-primary, #e17055);
+  color: #1a1a2e;
+}
+.btnPrimary:hover {
+  background: var(--pixel-ui-bg);
+  color: var(--pixel-btn-primary, #e17055);
+}
+
+/* 危险按钮（爆破红） */
+.btnDanger {
+  border-color: var(--pixel-demolish);
+  background: var(--pixel-demolish);
+  color: #fff;
+}
+.btnDanger:hover {
+  background: var(--pixel-ui-bg);
+  color: var(--pixel-demolish);
+}
+
+/* ============================================================
+   Notification：顶部滑入通知条
+   ============================================================ */
+.notifyLayer {
+  position: fixed;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: var(--z-notification);
+  pointer-events: none; /* 层本身不挡交互，单条启用 */
+}
+
+.notify {
+  pointer-events: auto;
+  min-width: 300px;
+  max-width: 460px;
+  background: var(--pixel-ui-bg);
+  border: 3px solid var(--pixel-ui-border);
+  box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.45);
+  color: var(--pixel-ui-text);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  animation: notifySlideIn 220ms steps(4, end);
+}
+
+/* 像素风分步滑入（steps 制造顿挫感，非平滑） */
+@keyframes notifySlideIn {
+  from {
+    transform: translateY(-120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.notify.leaving {
+  animation: notifySlideOut 180ms steps(3, end) forwards;
+}
+@keyframes notifySlideOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-120%);
+    opacity: 0;
+  }
+}
+
+/* 通知左侧状态色条 */
+.notifyBar {
+  width: 6px;
+  align-self: stretch;
+  flex-shrink: 0;
+  background: var(--pixel-ui-border);
+}
+.notifyBar.info {
+  background: var(--pixel-ui-border);
+}
+.notifyBar.success {
+  background: var(--pixel-completed);
+}
+.notifyBar.warning {
+  background: var(--pixel-warning);
+}
+.notifyBar.danger {
+  background: var(--pixel-demolish);
+}
+
+.notifyBody {
+  flex: 1;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.notifyTitle {
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  color: var(--pixel-ui-border);
+}
+
+.notifyClose {
+  background: transparent;
+  border: none;
+  color: var(--pixel-ui-text);
+  cursor: pointer;
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  padding: 0 2px;
+  line-height: 1;
+}
+.notifyClose:hover {
+  color: var(--pixel-demolish);
+}

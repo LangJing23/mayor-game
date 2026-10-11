@@ -1,0 +1,275 @@
+/* ============================================================
+   公文轨样式（document track）—— 立项批复 / 审计报告 / 政府工作报告共用
+   米白纸面 + 黑色正文 + 红色标题/印章；现代中文公文风；不用像素字体、不用游戏黄标题栏
+   ============================================================ */
+
+/* 遮罩（与像素弹窗同款深色半透明，但内容是公文纸） */
+.docOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 12, 30, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal);
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+/* 文件纸 */
+.docPaper {
+  background: var(--doc-bg, #fafaf8);
+  color: var(--doc-text, #1a1a1a);
+  width: min(640px, 94vw);
+  max-height: 86vh;
+  overflow-y: auto;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--doc-border, #d9d4c8);
+  font-family: var(--font-doc-sans);
+  position: relative;
+}
+
+/* 纸张内边距 */
+.docInner {
+  padding: 36px 44px 28px;
+  position: relative;
+}
+
+/* 发文机关（红色，居中，较大） */
+.docOrg {
+  text-align: center;
+  color: var(--doc-title, #c0392b);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1.4;
+  font-family: 'SimHei', 'Microsoft YaHei', var(--font-doc-sans);
+}
+
+/* 发文机关下的红色分隔横线（公文红线） */
+.docRule {
+  height: 2px;
+  background: var(--doc-title, #c0392b);
+  margin: 14px 0 22px;
+}
+
+/* 文号（居中灰色小字） */
+.docDocNo {
+  text-align: center;
+  color: var(--doc-meta, #999);
+  font-size: 12px;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+/* 批复标题（居中，黑色加粗） */
+.docTitle {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.6;
+  margin-bottom: 26px;
+  color: var(--doc-text, #1a1a1a);
+  font-family: 'SimHei', 'Microsoft YaHei', var(--font-doc-sans);
+}
+
+/* 正文段落 */
+.docBody {
+  font-size: 15px;
+  line-height: 2;
+  color: var(--doc-text, #1a1a1a);
+}
+.docBody p {
+  margin: 0 0 14px;
+  text-indent: 2em; /* 公文首行缩进 */
+}
+
+/* 条目式信息（项目名称/类型/规模等）：无 JSON 字段名感，用公文叙述式小标 */
+.docField {
+  margin: 0 0 12px;
+  line-height: 1.9;
+}
+.docFieldLabel {
+  color: #555;
+  margin-right: 6px;
+}
+.docFieldValue {
+  color: var(--doc-text, #1a1a1a);
+  font-weight: 600;
+}
+
+/* 原始申请事项引用块 */
+.docQuote {
+  border-left: 3px solid var(--doc-title, #c0392b);
+  background: #f3efe6;
+  padding: 10px 14px;
+  margin: 0 0 18px;
+  color: #333;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* 风险提示 / 方针影响（低调但可见） */
+.docNotice {
+  background: #fbf4e6;
+  border: 1px solid #e4c98a;
+  padding: 10px 14px;
+  margin: 16px 0 0;
+  font-size: 13px;
+  line-height: 1.8;
+  color: #6b5320;
+}
+.docNoticeLabel {
+  color: #a6791a;
+  font-weight: 700;
+  margin-right: 6px;
+}
+
+/* 落款（右对齐，机关 + 日期） */
+.docSign {
+  margin-top: 26px;
+  text-align: right;
+  line-height: 1.9;
+  color: var(--doc-text, #1a1a1a);
+}
+.docSignDate {
+  color: #555;
+  font-size: 13px;
+}
+
+/* 像素红色印章（公文点缀，覆盖在落款处） */
+.docSeal {
+  position: absolute;
+  right: 44px;
+  bottom: 86px;
+  width: 92px;
+  height: 92px;
+  border: 3px solid rgba(192, 57, 43, 0.75);
+  border-radius: 50%;
+  color: rgba(192, 57, 43, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.3;
+  transform: rotate(-14deg);
+  letter-spacing: 1px;
+  font-family: 'SimHei', 'Microsoft YaHei', var(--font-doc-sans);
+  pointer-events: none;
+}
+
+/* 底部操作区（公文纸内，右对齐按钮） */
+.docActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 44px 28px;
+  border-top: 1px solid var(--doc-border, #d9d4c8);
+  background: var(--doc-bg, #fafaf8);
+  position: sticky;
+  bottom: 0;
+}
+
+/* 公文按钮（现代风，非像素） */
+.docBtn {
+  font-family: var(--font-doc-sans);
+  font-size: 14px;
+  padding: 9px 18px;
+  cursor: pointer;
+  border: 1px solid #bbb;
+  background: #fff;
+  color: #333;
+  border-radius: 2px;
+}
+.docBtn:hover {
+  background: #f0ede4;
+}
+.docBtn:active {
+  transform: translateY(1px);
+}
+.docBtnPrimary {
+  border-color: var(--doc-title, #c0392b);
+  background: var(--doc-title, #c0392b);
+  color: #fff;
+}
+.docBtnPrimary:hover {
+  background: #a93226;
+}
+
+/* ---------- 可审定字段（批复页内的编辑控件） ---------- */
+.docEditRow {
+  margin: 0 0 14px;
+}
+.docEditLabel {
+  display: block;
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 5px;
+}
+.docSuggestTag {
+  display: inline-block;
+  font-size: 11px;
+  color: #a6791a;
+  background: #fbf4e6;
+  border: 1px solid #e4c98a;
+  border-radius: 2px;
+  padding: 0 6px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.docInput {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-doc-sans);
+  font-size: 15px;
+  color: var(--doc-text, #1a1a1a);
+  background: #fff;
+  border: 1px solid #c7c2b4;
+  padding: 8px 10px;
+  border-radius: 2px;
+}
+.docInput:focus {
+  outline: 2px solid rgba(192, 57, 43, 0.5);
+  outline-offset: 0;
+  border-color: var(--doc-title, #c0392b);
+}
+.docTextarea {
+  resize: vertical;
+  line-height: 1.7;
+}
+.docSelect {
+  font-family: var(--font-doc-sans);
+  font-size: 15px;
+  padding: 8px 10px;
+  border: 1px solid #c7c2b4;
+  border-radius: 2px;
+  background: #fff;
+  color: var(--doc-text, #1a1a1a);
+}
+
+/* 动态小节 */
+.docSection {
+  margin: 0 0 16px;
+}
+.docSectionTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--doc-text, #1a1a1a);
+  margin-bottom: 6px;
+  font-family: 'SimHei', 'Microsoft YaHei', var(--font-doc-sans);
+}
+.docSectionBody {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #333;
+  text-indent: 2em;
+}
+
+/* 审定提示小标 */
+.docReviewHint {
+  font-size: 12px;
+  color: #888;
+  margin: 2px 0 14px;
+}

@@ -1,0 +1,195 @@
+/* ============================================================
+   烂尾工程专项审计报告 —— 公文轨补充样式
+   外壳（遮罩/纸面/页眉/红线/文号/落款/公章）复用 document.module.css，
+   这里仅补：章节标题、台账事实网格、审计估算进度条、情绪发票、审计建议块。
+   ============================================================ */
+
+/* 章节标题（一、二、三…） */
+.sectionHead {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--doc-text, #1a1a1a);
+  margin: 22px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--doc-border, #d9d4c8);
+  font-family: 'SimHei', 'Microsoft YaHei', var(--font-doc-sans);
+}
+.sectionHead:first-of-type {
+  margin-top: 4px;
+}
+
+/* ---------- 台账事实网格（真实数据，可核验） ---------- */
+.factNote {
+  font-size: 12px;
+  color: #8a8f94;
+  margin: -4px 0 10px;
+}
+.factGrid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 14px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.factLabel {
+  color: #666;
+  white-space: nowrap;
+}
+.factValue {
+  color: var(--doc-text, #1a1a1a);
+  font-weight: 600;
+}
+
+/* 曾经状态标记（预警/停工经历） */
+.factTags {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.factTag {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 2px;
+  background: #f3efe6;
+  border: 1px solid #e2dccb;
+  color: #6b5320;
+}
+
+/* 最近施工备案列表 */
+.recordList {
+  margin-top: 10px;
+  border-top: 1px dashed #e2dccb;
+}
+.recordRow {
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.8;
+  padding: 5px 0;
+  border-bottom: 1px dashed #e2dccb;
+}
+.recordDate {
+  flex-shrink: 0;
+  color: #888;
+  min-width: 56px;
+}
+.recordNote {
+  color: #333;
+}
+.recordDemoTag {
+  color: #a6791a;
+  font-size: 11px;
+  margin-left: 6px;
+}
+.recordEmpty {
+  font-size: 13px;
+  color: #999;
+  padding: 6px 0;
+}
+
+/* ---------- 审计估算完成度进度条（审计判断，非事实） ---------- */
+.estimateWrap {
+  margin: 8px 0 4px;
+}
+.estimateLabel {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 6px;
+}
+.estimateLabel b {
+  color: var(--doc-title, #c0392b);
+  font-size: 15px;
+}
+.estimateBarTrack {
+  height: 14px;
+  background: #ece7da;
+  border: 1px solid #d9d4c8;
+  overflow: hidden;
+}
+.estimateBarFill {
+  height: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    #c0392b,
+    #c0392b 6px,
+    #a93226 6px,
+    #a93226 12px
+  );
+}
+.estimateHint {
+  font-size: 11px;
+  color: #999;
+  margin-top: 4px;
+}
+
+/* ---------- 情绪发票 ---------- */
+.invoice {
+  margin-top: 8px;
+  border: 1px solid #d9d4c8;
+  background: #fdfcf8;
+}
+.invoiceHead {
+  background: #f3efe6;
+  border-bottom: 1px dashed #c7c2b4;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #6b5320;
+  letter-spacing: 1px;
+  text-align: center;
+  font-family: 'SimHei', 'Microsoft YaHei', var(--font-doc-sans);
+}
+.invoiceLine {
+  display: flex;
+  justify-content: space-between;
+  padding: 7px 14px;
+  font-size: 14px;
+  line-height: 1.6;
+  border-bottom: 1px dashed #ece7da;
+}
+.invoiceLine:last-of-type {
+  border-bottom: none;
+}
+.invoiceKey {
+  color: #555;
+}
+.invoiceVal {
+  color: var(--doc-text, #1a1a1a);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.invoiceVerdict {
+  border-top: 1px solid #d9d4c8;
+  background: #fbf4e6;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.9;
+  color: #6b5320;
+}
+
+/* ---------- 审计建议（conclusion，只读文字，无治理按钮） ---------- */
+.conclusionBox {
+  margin-top: 8px;
+  border-left: 4px solid var(--doc-title, #c0392b);
+  background: #fdece6;
+  padding: 12px 16px;
+}
+.conclusionTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--doc-title, #c0392b);
+  margin-bottom: 6px;
+  font-family: 'SimHei', 'Microsoft YaHei', var(--font-doc-sans);
+}
+.conclusionReason {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #333;
+}
+.conclusionFoot {
+  font-size: 12px;
+  color: #999;
+  margin-top: 10px;
+  line-height: 1.7;
+}

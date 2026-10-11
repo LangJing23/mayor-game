@@ -1,0 +1,229 @@
+/* ============================================================
+   HUD 样式（像素游戏轨道）—— TopBar / ActionBar / Announcements
+   深海军蓝 + 暖黄金边，叠在城市 Canvas 之上，Canvas 保持视觉主体
+   ============================================================ */
+
+/* ---------- TopBar ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px 16px;
+  background: rgba(26, 26, 46, 0.92);
+  border-bottom: 3px solid var(--pixel-ui-border);
+  color: var(--pixel-ui-text);
+  min-height: var(--topbar-height);
+  box-sizing: border-box;
+}
+
+/* 左区：城市名（主）+ 方针（次） */
+.topLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.cityName {
+  font-family: var(--font-pixel);
+  font-size: 15px;
+  color: var(--pixel-ui-border);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.cityYear {
+  color: var(--pixel-ui-text);
+  font-size: 13px;
+}
+
+.policyLine {
+  /* 施政方针：第二层弱信息，不抢城市名 */
+  font-size: 11px;
+  color: #9aa0b5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 420px;
+}
+.policyLabel {
+  color: #6f7590;
+}
+
+/* 右区：状态统计 */
+.stats {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  line-height: 1;
+  padding: 4px 7px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(232, 193, 76, 0.3);
+}
+
+.statDot {
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
+}
+.dotConstruction {
+  background: var(--pixel-construction);
+}
+.dotWarning {
+  background: var(--pixel-warning);
+}
+.dotHalted {
+  background: var(--pixel-halted);
+}
+.dotAbandoned {
+  background: var(--pixel-abandoned);
+}
+.dotCompleted {
+  background: var(--pixel-completed);
+}
+
+.statLabel {
+  color: #c9c3a8;
+}
+.statValue {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: var(--pixel-ui-text);
+}
+
+/* 演示模式标识：明显但不过度抢眼 */
+.demoBadge {
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: #1a1a2e;
+  background: var(--pixel-halted);
+  padding: 4px 7px;
+  border: 2px solid #8b3a24;
+  white-space: nowrap;
+}
+
+/* ---------- ActionBar ---------- */
+.actionbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.actionBtn {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  letter-spacing: 1px;
+  padding: 10px 14px;
+  cursor: pointer;
+  border: 2px solid var(--pixel-ui-border);
+  background: rgba(26, 26, 46, 0.92);
+  color: var(--pixel-ui-text);
+  box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.5);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.actionBtn:hover {
+  background: var(--pixel-ui-border);
+  color: var(--pixel-ui-bg);
+}
+.actionBtn:active {
+  transform: translateY(2px);
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+}
+.actionBtn:focus-visible {
+  outline: 2px dashed var(--pixel-ui-text);
+  outline-offset: 2px;
+}
+
+/* 主 CTA：申请立项，橙红强调 + 略大 */
+.actionCta {
+  border-color: var(--pixel-btn-primary, #e17055);
+  background: var(--pixel-btn-primary, #e17055);
+  color: #1a1a2e;
+  font-size: 11px;
+  padding: 11px 18px;
+}
+.actionCta:hover {
+  background: rgba(26, 26, 46, 0.95);
+  color: var(--pixel-btn-primary, #e17055);
+}
+
+/* ---------- Announcements ---------- */
+.announceBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(26, 26, 46, 0.92);
+  border-top: 3px solid var(--pixel-ui-border);
+  padding: 6px 0;
+  overflow: hidden;
+  min-height: 30px;
+  box-sizing: border-box;
+}
+
+.announceTag {
+  flex-shrink: 0;
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: #1a1a2e;
+  background: var(--pixel-ui-border);
+  padding: 4px 8px;
+  margin-left: 8px;
+}
+
+/* 跑马灯视窗 */
+.marquee {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
+/* 轨道含两份相同内容；滚动 -50%（恰好一份宽度）即无缝循环 */
+.marqueeTrack {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marqueeScroll linear infinite;
+  font-size: 13px;
+  color: #d8d2b8;
+  will-change: transform;
+}
+
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* 单份内容分组（用于测量宽度） */
+.marqueeGroup {
+  display: inline-flex;
+  align-items: center;
+}
+
+.marqueeItem {
+  display: inline-block;
+  padding: 0 20px;
+}
+
+/* 多条公告之间的清晰分隔符 */
+.marqueeSep {
+  display: inline-block;
+  color: var(--pixel-ui-border);
+  padding: 0 24px;
+}
